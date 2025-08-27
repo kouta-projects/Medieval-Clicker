@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokéclicker Medieval</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="juego">
+    <div id="contenido">
+      
+      <!-- Pantalla Superior -->
+      <div id="pantallaSuperior">
+        <!-- UI -->
+        <div id="ui">
+          <!-- Barra de Vida -->
+          <div id="barra-vida" class="ui-element">
+            <div class="barra-contenedor">
+              <div class="barra-llena"></div>
+              <div class="vida-numero"></div>
+            </div>
+          </div>
+
+          <!-- Número de Daño -->
+          <div id="numero-dano" class="ui-element">
+            <img src="assets/ui/daño.png" class="icono">
+            <div class="num-dano"></div>
+          </div>
+
+          <!-- Oro -->
+          <div id="oro" class="ui-element">
+            <img src="assets/ui/coin.png" class="icono">
+            <div class="cantidad-oro"></div>
+          </div>
+
+          <!-- Iconos columna Arma/Héroe/Escudo -->
+          <div id="iconos-columnas">
+            <div class="marco-icono" id="marco-arma">
+              <img src="assets/ui/arma1.png" class="icono-columna" id="arma">
+            </div>
+            <div class="marco-icono" id="marco-heroe">
+              <img src="assets/ui/heroe1.png" class="icono-columna" id="heroe">
+            </div>
+            <div class="marco-icono" id="marco-escudo">
+              <img src="assets/ui/escudo1.png" class="icono-columna" id="escudo">
+            </div>
+          </div>
+        </div>
+
+        <!-- Zona Combate -->
+        <div id="zona-combate">
+          <div id="botones-tienda">
+            <div class="izquierda">
+              <!-- Aquí se agregan botones upgrade arma y escudo -->
+            </div>
+            <div class="derecha">
+              <!-- Aquí se agrega botón autoclicker -->
+            </div>
+          </div>
+
+          <div id="pociones" class="ui-element">
+            <img src="assets/ui/potion.png" class="icono">
+            <div class="cantidad-pociones">0</div>
+          </div>
+
+          <div id="combate"></div>
+        </div>
+
+      </div>
+
+      <!-- Pantalla Inferior -->
+      <div id="pantallaInferior">
+        <img src="assets/map/globalmap.jpg" alt="Mapa Global">
+        <div id="iconos-mapa">
+          <div id="village"><img src="assets/icons/village.png" alt="ciudad"></div>
+          <div id="cave1"><img src="assets/icons/cave1.png" alt="cueva1"></div>
+          <div id="cave2"><img src="assets/icons/cave2.png" alt="cueva2"></div>
+          <div id="dung1"><img src="assets/icons/dungeon1.png" alt="mazmorra1"></div>
+          <div id="dung2"><img src="assets/icons/dungeon2.png" alt="mazmorra2"></div>
+          <div id="graveyard"><img src="assets/icons/graveyard2.png" alt="cementerio"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

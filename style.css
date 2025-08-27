@@ -1,0 +1,434 @@
+/* ---------------- Global ---------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* ---------------- Contenedor principal ---------------- */
+#juego {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#contenido {
+  width: 1200px;
+  height: calc(100% - 20px);
+  background-color: transparent;
+  border: 10px solid white;
+  position: relative;
+
+  /* nuevo: imagen de fondo ajustada al div */
+  background-image: url("assets/map/backgroundApp.PNG");
+  background-size: cover;      /* ajusta al tamaño del div */
+  background-position: center; /* centra la imagen */
+  background-repeat: no-repeat;
+}
+
+/* ---------------- Pantalla Superior ---------------- */
+#pantallaSuperior {
+  width: 1000px;
+  height: 433px;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+/* ---------------- UI ---------------- */
+#ui {
+  width: 350px;
+  height: 445px;
+  position: relative;
+  background-image: url("assets/ui/cleanbgui.png");
+  background-size: cover;
+  background-position: center;
+  /* solo depuración */
+  background-color: transparent;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  image-rendering: pixelated;
+}
+
+/* Barra de vida */
+#barra-vida {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+#barra-vida img.icono {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+
+.barra-llena {
+  width: 150px;
+  height: 15px;
+  background-color: red;
+  border-radius: 4px;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.vida-numero {
+  margin-left: 5px;
+  color: black;
+  margin-left: 20px;
+}
+
+/* Número de daño */
+#numero-dano,
+#oro {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+#numero-dano img.icono,
+#oro img.icono {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+  margin-left: 20px;
+}
+
+.num-daño,
+.cantidad-oro,
+.cantidad-pociones {
+  color: black;
+  font-size: 18px;
+}
+
+/* Iconos Arma/Héroe/Escudo */
+#iconos-columnas {
+  display: flex;
+  margin-top: auto;
+}
+
+/* Marco base */
+.marco-icono {
+  width: 90px;
+  /* tamaño fijo del marco */
+  height: 180px;
+  border: 2px solid #a67c52;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  margin-left: 13px;
+  margin-top: 50px;
+}
+
+/* Imagen dentro del marco: default */
+.marco-icono img {
+  object-fit: contain;
+  /* mantiene proporción */
+  image-rendering: pixelated;
+  display: block;
+}
+
+/* Escalado individual según tipo */
+#arma {
+  max-width: 20px;
+  max-height: 80px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  width: auto;
+  /* quitar width fijo */
+  height: auto;
+  /* quitar height fijo */
+  scale: 4;
+  /* quitar cualquier scale anterior */
+}
+
+#heroe {
+  max-width: 80px;
+  max-height: 160px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  width: auto;
+  /* quitar width fijo */
+  height: auto;
+  /* quitar height fijo */
+  scale: 4;
+  /* quitar cualquier scale anterior */
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+
+#escudo {
+  max-width: 20px;
+  max-height: 80px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  width: auto;
+  /* quitar width fijo */
+  height: auto;
+  /* quitar height fijo */
+  scale: 4;
+  /* quitar cualquier scale anterior */
+}
+
+/* ---------------- Zona Combate ---------------- */
+#zona-combate {
+  width: 600px;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  border: 5px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  /* NECESARIO para que los hijos absolutos se posicionen dentro */
+}
+
+#pociones {
+  position: absolute;
+  /* ahora flota sobre #zona-combate */
+  bottom: 10px;
+  /* lo mandas a la parte baja */
+  left: 20px;
+  /* y a la izquierda */
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+#pociones img.icono {
+  width: 40px;
+  height: 40px;
+}
+
+#pociones .cantidad-pociones {
+  color: white;
+  font-size: 18px;
+  text-shadow: 1px 1px 2px black;
+}
+
+#combate {
+  position: relative;
+  width: 100%;
+  height: 70%;
+  background-color: yellow;
+  display: flex;
+  /* usamos flex para centrar */
+  align-items: center;
+  /* centro vertical */
+  justify-content: center;
+  /* centro horizontal */
+  overflow: hidden;
+}
+
+#combate img.enemigo {
+  max-width: 100%;
+  /* ocupa hasta el ancho del contenedor */
+  max-height: 100%;
+  /* ocupa hasta el alto del contenedor */
+  object-fit: contain;
+  /* mantiene proporción */
+  image-rendering: pixelated;
+  /* estilo retro */
+  transform: scale(2.5);
+  /* escala por defecto */
+  transition: transform 0.3s ease;
+}
+
+/* ---------------- UI Enemigos ---------------- */
+
+.enemigo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.barra-vida {
+  width: 200px;
+  height: 20px;
+  background-color: #444;
+  border: 2px solid #000;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.barra-vida-fill {
+  height: 100%;
+  background-color: red;
+  width: 100%;
+  transition: width 0.2s linear;
+}
+
+.vida-texto {
+  font-size: 14px;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  margin-bottom: 40px;
+}
+
+img.enemigo {
+  max-width: 250px;
+  image-rendering: pixelated;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+img.enemigo:active {
+  transform: scale(0.95);
+}
+
+/* ---------------- Pantalla Inferior ---------------- */
+#pantallaInferior {
+  width: 1000px;
+  height: 433px;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: blue;
+  border: 5px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#pantallaInferior img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Contenedor de iconos del mapa */
+#iconos-mapa {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+#village,
+#cave1,
+#cave2,
+#dung1,
+#dung2,
+#graveyard {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  pointer-events: auto;
+}
+
+#village {
+  top: 55%;
+  left: 40%;
+}
+
+#cave1 {
+  top: 35%;
+  left: 20%;
+}
+
+#cave2 {
+  top: 20%;
+  left: 55%;
+}
+
+#dung1 {
+  top: 60%;
+  left: 65%;
+}
+
+#dung2 {
+  top: 33%;
+  left: 80%;
+}
+
+#graveyard {
+  top: 7%;
+  left: 32%;
+}
+
+/* Botones tienda */
+#botones-tienda {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* separa izquierda/derecha */
+  padding: 0 10px;               /* margen lateral */
+  z-index: 10;
+  pointer-events: auto;
+}
+
+#botones-tienda .izquierda,
+#botones-tienda .derecha {
+  display: flex;
+  gap: 5px; /* espacio entre botones */
+}
+
+#botones-tienda button {
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* ---------------------------------------*/
+/* ---------- Layout para móvil ---------- */
+@media (max-width: 768px) {
+  #contenido {
+    width: 100%;
+    height: auto;
+    border: none; /* opcional, para ganar espacio */
+    display: flex;
+    flex-direction: column;
+  }
+
+  #pantallaSuperior,
+  #zona-combate,
+  #pantallaInferior {
+    position: static;   /* 🔑 deja que fluya en columna */
+    width: 100%;
+    height: auto;
+    transform: none;    /* elimina el translateX que centraba */
+    margin: 0;
+  }
+
+  #ui {
+    width: 100%;
+    height: auto;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #zona-combate {
+    height: 300px; /* ajusta según quede mejor */
+  }
+
+  #pantallaInferior {
+    height: 300px; /* ajusta según quede mejor */
+  }
+}
