@@ -5,8 +5,8 @@ export class Heroe {
     this.sprite = new SpriteAnimado(ctx, src, frameWidth, frameHeight, frameCount, fps, scale);
     this.vidaMaxima = 100;
     this.vidaActual = this.vidaMaxima;
-    this.oro = 0;       // 🔹 oro inicial
-    this.daño = 500;      // 🔹 daño base
+    this.oro = 500;       // 🔹 oro inicial
+    this.daño = 5;      // 🔹 daño base
     this.pociones = 0;  // 🔹 pociones iniciales
     this.tieneAutoclicker = false;
   }
